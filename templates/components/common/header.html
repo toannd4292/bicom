@@ -59,3 +59,78 @@
 
 {{{region name="header_bottom--global"}}}
 {{{region name="header_bottom"}}}
+
+<style>
+.accordion-backer.prod--118 {
+    background-color: #d2334a;
+}    
+.accordion-backer.prod--119 {
+    background-color: #814c9e;
+}  
+.accordion-backer.prod--143 {
+    background-color: #005b80;
+}
+.accordion-backer.prod--123 {
+    background-color: #61bc4e;
+}
+
+    
+.span7.widget-span.widget-type-cell.main-content {
+    width: 57%;    float: left;
+}
+.span5.widget-span.widget-type-cell.main-content.main-content-right {
+    width: 40%;
+    float: left;
+    padding-left: 20px;
+}
+.homepage-offers .homepage-offer.offerRight {
+    display: none;
+}
+.homepage-offers .homepage-offer {
+    -ms-flex: 0 1 100%;
+    flex: 0 1 100%;
+}
+.homepage-offers .homepage-offer-info-container {
+    max-width: 720px;
+    margin: 0 auto;
+}
+.homepage-offer.offerLeft {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+div#navPages-currency {
+    right: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    min-width: 160px;
+    text-align: center;
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+}
+div#navPages-currency a {
+    width: 100%;
+    margin: 0px !important;
+}
+@media only screen and (max-width: 800px) {
+    .span7.widget-span.widget-type-cell.main-content, .span5.widget-span.widget-type-cell.main-content.main-content-right {
+        width: 100%;    float: none; padding: 0px;
+    }
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('.body-class-createaccount #FormField_1 .form-label').html('Email address <small>Required</small>');
+    $('.body-class-createaccount #FormField_2 .form-label').html('Password <small>Required</small>');
+    $('.body-class-createaccount #FormField_3 .form-label').html('Confirm password <small>Required</small>');
+    $('.body-class-createaccount #FormField_4 .form-label').html('First name <small>Required</small>');
+    $('.body-class-createaccount #FormField_5 .form-label').html('Surname <small>Required</small>'); 
+    $('.body-class-createaccount #FormField_6 .form-label').text('Company name'); 
+    $('.body-class-createaccount #FormField_7 .form-label').text('Phone number'); 
+    $('.body-class-createaccount #FormField_8 .form-label').html('Address line 1 <small>Required</small>'); 
+    $('.body-class-createaccount #FormField_9 .form-label').text('Address line 2'); 
+    $('.body-class-createaccount #FormField_10 .form-label').html('Suburb / city <small>Required</small>'); 
+    $('.body-class-createaccount #FormField_12 .form-label').html('State / Province <small>Required</small>');
+    $('.body-class-createaccount #FormField_13 .form-label').html('Zip code <small>Required</small>');
+});
+</script>

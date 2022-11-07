@@ -10,7 +10,7 @@ export default class ApparelDeal extends Component {
             products: [],
             message: '',
         };
-        // console.log(this.state);
+        console.log(this.state);
 
         this.selectOption = (id, main) => {
             // console.log(swatch);
@@ -28,7 +28,7 @@ export default class ApparelDeal extends Component {
                 products,
                 message: '',
             });
-            // console.log(this.state);
+            console.log(this.state);
         };
 
         this.resetOptions = (main) => {
@@ -44,16 +44,16 @@ export default class ApparelDeal extends Component {
                 products,
                 message: '',
             });
-            // console.log(this.state);
+            console.log(this.state);
         };
 
         this.addToCart = (e) => {
-            // console.log('break1');
+            console.log('break1');
             e.preventDefault();
             const button = e.target;
             const lineItems = this.state.products.map(product => {
                 if (product.quantity > 0) {
-                    // console.log('break2');
+                    console.log('break2');
                     return {
                         productId: product.productId,
                         quantity: product.quantity,
@@ -62,7 +62,7 @@ export default class ApparelDeal extends Component {
                 }
             }).filter(item => item != null);
             async function createNewCart() {
-                // console.log('break3');
+                console.log('break3');
                 const response = await fetch('/api/storefront/carts', {
                     credentials: 'include',
                     method: 'POST',
@@ -76,7 +76,7 @@ export default class ApparelDeal extends Component {
             }
 
             async function addToExistingCart(cartId) {
-                // console.log('break4');
+                console.log('break4');
                 const response = await fetch(`/api/storefront/carts/${cartId}/items`, {
                     credentials: 'include',
                     method: 'POST',
@@ -90,7 +90,7 @@ export default class ApparelDeal extends Component {
             }
 
             function handleFailedAddToCart(message, self, buttonNode) {
-                // console.log('break5');
+                console.log('break5');
                 self.setState({
                     message,
                 });
@@ -98,7 +98,7 @@ export default class ApparelDeal extends Component {
             }
 
             if (lineItems.length > 1) {
-                // console.log('break6');
+                console.log('break6');
                 button.disabled = true;
                 this.setState({ message: 'Adding items to your cart...' });
                 fetch('/api/storefront/cart')
@@ -111,7 +111,7 @@ export default class ApparelDeal extends Component {
                     .then(() => window.location = "/cart.php")
                     .catch(err => handleFailedAddToCart(err, this, button));
             } else {
-                // console.log('break7');
+                console.log('break7');
                 console.log(this);
                 this.setState({ message: 'Please select both a mouthguard AND an apparel item!' });
             }
@@ -143,7 +143,7 @@ export default class ApparelDeal extends Component {
                 sizes.forEach((size) => {
                     const aeroFilteredProduct = filteredProduct.filter(product => product.size === size);
                     aeroFilteredProduct.sort((a, b) => b.size.localeCompare(a.size));
-                    // console.log(aeroFilteredProduct);
+                    console.log(aeroFilteredProduct);
                     if (aeroFilteredProduct.length > 0) {
                         filteredProducts.push(aeroFilteredProduct);
                     }
@@ -163,15 +163,15 @@ export default class ApparelDeal extends Component {
         });
         if (filteredProducts[0] !== undefined) {
             finalFiltProd = filteredProducts[0][0].productId;
-            // console.log(finalFiltProd);
+            console.log(finalFiltProd);
         }
         if (filteredApparelProducts[0] !== undefined) {
             finalFiltApparelProd = filteredApparelProducts[0][0].productId;
-            // console.log(finalFiltApparelProd);
+            console.log(finalFiltApparelProd);
         }
-        // console.log(finalFiltProd);
-        // console.log(finalFiltApparelProd);
-        // console.log(filteredApparelProducts);
+        console.log(finalFiltProd);
+        console.log(finalFiltApparelProd);
+        console.log(filteredApparelProducts);
         // <p id="limitedTime">LIMITED TIME OFFER: <span id="apparelTimer"></span></p>
         return (
             <div>
@@ -220,8 +220,8 @@ export default class ApparelDeal extends Component {
                                 <div className="productView-options-wrap">
                                     <div className="productView-options-inner">
                                         <div className="form-field" data-product-attribute="set-rectangle" role="radiogroup">
-                                            <label className="form-label form-label--alternate form-label--inlineSmall" id="rectangle-group-label">
-                                                Mouthguard Size:
+                                            <label className="form-label form-label--alternate form-label--inlineSmall rwx" id="rectangle-group-label">
+                                                Mouthguard Size:: 
                                                 <small className="is-required">Required</small>
                                             </label>
                                             {filteredProducts.map((filteredProductNow, index) => {
@@ -237,8 +237,8 @@ export default class ApparelDeal extends Component {
                                             })}
                                         </div>
                                         <div className="form-field mgColor grayout" data-product-attribute="swatch" role="radiogroup">
-                                            <label className="form-label form-label--alternate form-label--inlineSmall" id="rectangle-group-label">
-                                                Mouthguard Color:
+                                            <label className="form-label form-label--alternate form-label--inlineSmall  wer" id="rectangle-group-label">
+                                                Mouthguard Color::
                                                 <small className="is-required">Required</small>
                                             </label>
                                             {filteredProducts.map((filteredProductNow, index) => {

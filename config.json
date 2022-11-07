@@ -1,5 +1,5 @@
 {
-  "name": "Roots (3)",
+  "name": "Roots (3) (3) (2)",
   "version": "3.0.6",
   "template_engine": "handlebars_v4",
   "meta": {
@@ -715,8 +715,8 @@
         "optimizedCheckout-show-backgroundImage": false,
         "optimizedCheckout-backgroundImage": "",
         "optimizedCheckout-backgroundImage-size": "1000x400",
-        "optimizedCheckout-show-logo": "none",
-        "optimizedCheckout-logo": "",
+        "optimizedCheckout-show-logo": "custom",
+        "optimizedCheckout-logo": "https://cdn11.bigcommerce.com/s-586905l3p5/images/stencil/{:size}/sisu-logo-header-1_1620275800__27931.original_1651544057.png",
         "optimizedCheckout-logo-size": "250x100",
         "optimizedCheckout-logo-position": "left",
         "optimizedCheckout-headingPrimary-color": "#2d2d2d",

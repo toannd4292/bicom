@@ -175,24 +175,25 @@
             </article>
             {{/if}}
 
-            {{#if settings.address}}
+       
             <article class="footer-info-col footer-mobile-limited footer-info-col--small" data-section-type="storeInfo">
                 <!-- <h5 class="footer-info-heading footer-store-name">{{settings.store_name}}</h5> -->
                 <div class="footer-info-heading footer-store-name"><a href="/"><img src="{{ cdn '../img/sisu/theme/global/sisu-mouthguards-logo.svg' }}" alt="SISU Mouthguards Logo" /></a></div>
                 <!-- <address>Akervall Technologies Inc.</br>{{nl2br settings.address}}</address> -->
                 <p>(see'-soo) <em>noun</em> - bravery, tenacity, <strong>grit</strong></p>
-                {{#if settings.phone_number}}
+               
                 <div class="footer-info-phone">
                     <i class="icon" aria-hidden="true">
                         <svg>
                             <use xlink:href="#icon-phone" />
                         </svg>
                     </i>
-                    <a href="tel:{{settings.phone_number}}">{{settings.phone_number}}</a>
+                    <a href="tel:800-444-0570">800-444-0570</a>
+                    <!--<a href="tel:{{settings.phone_number}}">{{settings.phone_number}}</a>-->
                 </div>
-                {{/if}}
+             
             </article>
-            {{/if}}
+      
         </section>
         {{#if theme_settings.geotrust_ssl_common_name}}
         <div class="footer-geotrust-ssl-seal">
@@ -208,3 +209,30 @@
         </div>
     </div>
 </footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $(".navUser-wrap .navPages-item--currency .navPages-action").click(function(){
+      if ($(this).hasClass('ativec')) {
+        $(this).removeClass('ativec');
+        $(".navUser-wrap #navPages-currency").slideUp();  
+      } else {
+        $(this).addClass('ativec');  
+        $(".navUser-wrap #navPages-currency").slideDown();  
+      }
+    
+  });
+});
+</script>
+
+<style>
+div#navPages-currency {
+    right: 0px !important;
+}    
+div#navPages-currency a {
+    width: 100%;
+}    
+</style>
+<!-- Start of HubSpot Embed Code -->
+ <script type="text/javascript" id="hs-script-loader" async defer src="//js-na1.hs-scripts.com/212277.js"></script>
+<!-- End of HubSpot Embed Code -->
