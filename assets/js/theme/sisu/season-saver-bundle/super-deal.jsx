@@ -10,7 +10,7 @@ export default class SuperDeal extends Component {
             products: [],
             message: '',
         };
-        console.log(this.state);
+        // console.log(this.state);
 
         this.selectOption = (id, main) => {
             // console.log(swatch);
@@ -28,7 +28,7 @@ export default class SuperDeal extends Component {
                 products,
                 message: '',
             });
-            console.log(this.state);
+            // console.log(this.state);
         };
 
         this.resetOptions = (main) => {
@@ -44,7 +44,7 @@ export default class SuperDeal extends Component {
                 products,
                 message: '',
             });
-            console.log(this.state);
+            // console.log(this.state);
         };
 
         this.selectOptionOne = (e) => {
@@ -59,7 +59,7 @@ export default class SuperDeal extends Component {
         };
 
         this.addToCart = (e) => {
-            console.log('break1');
+            // console.log('break1');
             e.preventDefault();
             const button = e.target;
             const lineItems = this.state.products.map(product => {
@@ -73,7 +73,7 @@ export default class SuperDeal extends Component {
                 }
             }).filter(item => item != null);
             async function createNewCart() {
-                console.log('break3');
+                // console.log('break3');
                 const response = await fetch('/api/storefront/carts', {
                     credentials: 'include',
                     method: 'POST',
@@ -101,7 +101,7 @@ export default class SuperDeal extends Component {
             }
 
             function handleFailedAddToCart(message, self, buttonNode) {
-                console.log('break5');
+                // console.log('break5');
                 self.setState({
                     message,
                 });
@@ -109,7 +109,7 @@ export default class SuperDeal extends Component {
             }
 
             if (lineItems.length > 1) {
-                console.log('break6');
+                // console.log('break6');
                 button.disabled = true;
                 this.setState({ message: 'Adding items to your cart...' });
                 fetch('/api/storefront/cart')
@@ -122,7 +122,7 @@ export default class SuperDeal extends Component {
                     .then(() => window.location = "/cart.php")
                     .catch(err => handleFailedAddToCart(err, this, button));
             } else {
-                console.log('break7');
+                // console.log('break7');
                 console.log(this);
                 this.setState({ message: 'Please select both mouthguard options, then try again!' });
             }
@@ -146,8 +146,8 @@ export default class SuperDeal extends Component {
         let finalFiltProd;
         let finalFiltApparelProd;
         productIds.forEach((productId) => {
-            console.log('products',products);
-            console.log('productIds',productIds);
+            // console.log(products);
+            // console.log(productIds);
             let filteredProduct;
             let filteredProductApparel;
             if (productId === 122) {
@@ -155,7 +155,7 @@ export default class SuperDeal extends Component {
                 filteredProduct = products.filter(product => product.productId === productId);
                 const aeroFilteredProduct = filteredProduct.filter(product => product.size === size);
                 aeroFilteredProduct.sort((a, b) => b.size.localeCompare(a.size));
-                console.log('aeroFilteredProduct',aeroFilteredProduct);
+                // console.log(aeroFilteredProduct);
                 if (aeroFilteredProduct.length > 0) {
                     filteredProducts.push(aeroFilteredProduct);
                 }
@@ -163,7 +163,7 @@ export default class SuperDeal extends Component {
             if (productId === 126) {
                 const apparelOptions = ['Medium', 'Large'];
                 filteredProductApparel = products.filter(product => product.productId === productId);
-                console.log('filteredProductApparel',filteredProductApparel);
+                // console.log(filteredProductApparel);
                 apparelOptions.forEach((size) => {
                     const apparelFilteredProduct = filteredProductApparel.filter(product => product.size === size);
                     // apparelFilteredProduct.sort((a, b) => b.option.localeCompare(a.option));
@@ -175,11 +175,11 @@ export default class SuperDeal extends Component {
         });
         if (filteredProducts[0] !== undefined) {
             finalFiltProd = filteredProducts[0][0].productId;
-            console.log('finalFiltProd', finalFiltProd);
+            // console.log(finalFiltProd);
         }
         if (filteredApparelProducts[0] !== undefined) {
             finalFiltApparelProd = filteredApparelProducts[0][0].productId;
-            console.log('finalFiltApparelProd', finalFiltApparelProd);
+            // console.log(finalFiltApparelProd);
         }
         // console.log(finalFiltProd);
         // console.log(finalFiltApparelProd);
@@ -192,12 +192,12 @@ export default class SuperDeal extends Component {
                 <div style={{
                     textAlign: 'center', width: '100%', margin: '0 auto', maxWidth: '1000px',
                 }}>
-                    <img src="https://www.sisuguard.com/product_images/uploaded_images/super-bundle-main.jpg" alt="SISU Season Saver Bundle."></img>
+                    <img src="https://www.sisuguard.com/product_images/uploaded_images/super-bundle-main.jpg" alt="SISU Season Saver Bundle"></img>
                 </div>
                 <br/>
                 <h1 style={{ textAlign: 'center', marginTop: 0 }}>Season Saver Bundle - <del>$49.99</del> <span data-product-price-without-tax="" className="price price--withoutTax">$39.99 USD</span></h1>
                 <p style={{ textAlign: 'center', paddingBottom: '3rem' }}>Select your Mouthguard options to create your bundle! We will add a fresh spray, case and heatpack to your cart for you!</p>
-                <div className="productView tdfg">
+                <div className="productView">
                     <section className="productView-images" data-image-gallery>
                         <figure className="productView-image is-ready" data-image-gallery-main="" data-zoom-image="https://cdn11.bigcommerce.com/s-nh4zo/images/stencil/760x760/products/232/1049/sisu-3d-rb__91926.1614778368.jpg?c=2">
                             <div className="productView-img-container">
@@ -235,14 +235,14 @@ export default class SuperDeal extends Component {
                             </div>
                         </div>
                         <div className="productView-options" id={'productView-options-' + finalFiltProd}>
-                            <form className="form xdfs">
-                                <div className="productView-options-wrap sfwe">
-                                    <div className="productView-options-inner ers">
+                            <form className="form">
+                                <div className="productView-options-wrap">
+                                    <div className="productView-options-inner">
                                         <div className="form-field" data-product-attribute="set-rectangle" role="radiogroup">
-                                            <label className="form-label form-label--alternate form-label--inlineSmall fge" id="rectangle-group-label">
-                                                Mouthguard Size:dw
+                                            <label className="form-label form-label--alternate form-label--inlineSmall" id="rectangle-group-label">
+                                                Mouthguard Size:
                                                 <small className="is-required">Required</small>
-                                            </label>sfsd
+                                            </label>
                                             {filteredProducts.map((filteredProductNow, index) => {
                                                 return (
                                                     <div className="form-option-wrapper" key={index}>
@@ -256,11 +256,11 @@ export default class SuperDeal extends Component {
                                                 );
                                             })}
                                         </div>
-                                        <div className="form-field mgColor grayout sdfes" data-product-attribute="swatch" role="radiogroup">
-                                            <label className="form-label form-label--alternate form-label--inlineSmall sre xdr" id="rectangle-group-label">
-                                                Mouthguard Color:dd
+                                        <div className="form-field mgColor grayout" data-product-attribute="swatch" role="radiogroup">
+                                            <label className="form-label form-label--alternate form-label--inlineSmall" id="rectangle-group-label">
+                                                Mouthguard Color:
                                                 <small className="is-required">Required</small>
-                                            </label>xcgtr
+                                            </label>
                                             {filteredProducts.map((filteredProductNow, index) => {
                                                 return (
                                                     <div className="mg-colors" id={filteredProductNow[0].size} key={index + 100} selectedsection={filteredProductNow[0].selectedSection}>
@@ -329,8 +329,8 @@ export default class SuperDeal extends Component {
                                 <div className="productView-options-wrap">
                                     <div className="productView-options-inner">
                                         <div className="form-field" data-product-attribute="set-rectangle" role="radiogroup">
-                                            <label className="form-label form-label--alternate form-label--inlineSmall yio" id="rectangle-group-label">
-                                                Mouthguard Size:yf
+                                            <label className="form-label form-label--alternate form-label--inlineSmall" id="rectangle-group-label">
+                                                Mouthguard Size:
                                                 <small className="is-required">Required</small>
                                             </label>
                                             {filteredApparelProducts.map((filteredProductNow, index) => {
@@ -346,8 +346,8 @@ export default class SuperDeal extends Component {
                                             })}
                                         </div>
                                         <div className="form-field apparelSizes grayout" data-product-attribute="swatch" role="radiogroup">
-                                            <label className="form-label form-label--alternate form-label--inlineSmall ngew" id="rectangle-group-label">
-                                                Mouthguard Color:te
+                                            <label className="form-label form-label--alternate form-label--inlineSmall" id="rectangle-group-label">
+                                                Mouthguard Color:
                                                 <small className="is-required">Required</small>
                                             </label>
                                             {filteredApparelProducts.map((filteredProductNow, index) => {
