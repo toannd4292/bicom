@@ -1,0 +1,36 @@
+{{#partial "page-before"}}
+
+<main class="page page-template-fullpage-scroll">
+    <div class="page-content page-content--full">
+    {{{page.content}}}
+    </div>
+</main>
+{{/partial}}
+
+{{#partial "head-after"}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.5/fullpage.min.css" integrity="sha256-04h4YCjSsnxj8CEs2pl8UvK165Dbt+WAmh4OrhObOCM=" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,600&display=swap" rel="stylesheet">    
+{{/partial}}
+
+{{#partial "footer-scripts"}}
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.5/fullpage.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.5/vendors/easings.min.js" integrity="sha256-se1LVUgnBaGcZvC0A7xkl3Lea7CRU5BQqUQT8ZvdH4A=" crossorigin="anonymous"></script> -->
+<!--     <script type="text/javascript">
+        new fullpage('#fullpage', {
+            licenseKey: '3361F237-D8B64AB6-BE95B293-BA527588',
+            navigation: true,
+            responsiveWidth: 700,
+            parallax: true,
+            onLeave: function(origin, destination, direction) {
+                console.log( 'onLeave', arguments );
+                var $fromSection = $(origin.item);
+                var $toSection = $(destination.item);
+                $fromSection.find('.wipe').removeClass('in');
+                $toSection.find('.wipe').addClass('in');
+            },
+            sectionSelector: ".fullpage-section"
+        });
+    </script> -->
+{{/partial}}
+
+{{> layout/base}}

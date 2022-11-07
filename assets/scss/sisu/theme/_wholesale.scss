@@ -1,0 +1,773 @@
+.wholesale-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.wholesale-title-content-container {
+  margin: 0 auto;
+  padding: 5rem 10rem;
+  flex: 1;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.wholesale-content-container {
+  margin: 0 auto;
+  padding: 5rem 10rem 0;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.wholesale-body {
+    background-image: url(https://cdn11.bigcommerce.com/s-nh4zo/product_images/uploaded_images/wholesale-bg.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+h2.wholesale-contact-title {
+  color: white;
+  padding: 1rem 3rem;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+.wholesale-contact-title-container {
+  background-color: black;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  text-align: center;
+}
+
+.wholesale-contact-details-container {
+  background-color: white;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  padding: 1rem 1rem;
+}
+
+.wholesale-contact-container {
+  width: 35%;
+  min-width: 343px;
+}
+
+.wholesale-sellcard, .wholesale-contact-container, .wholesale-image-card {
+  box-shadow: 0 18.02px 43.78px rgba(0,0,0,.25);
+  border-radius: 15px;
+}
+
+.wholesale-contact-detail {
+  padding: .5rem 0;
+  width: 75%;
+  margin: 0 auto;
+}
+
+.wholesale-contact-details-container img {
+  padding-right: 1.25rem;
+  height: 3rem;
+  width: 3.5rem;
+}
+
+.wholesale-image-card {
+  width: 28%;
+  background-color: white;
+  text-align: center;
+  padding: 0 0 1rem;
+}
+
+.wholesale-image-card-title-container h2 {
+  color: white;
+  margin: 0;
+  text-shadow: 1px 1px 10px #000;
+  font-size: 1.5rem;
+}
+
+.wholesale-image-card-image {
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  background-size: cover;
+  padding: 5rem 0;
+}
+
+#card-image-1 {
+  background-image: url(https://cdn11.bigcommerce.com/s-nh4zo/product_images/uploaded_images/wholesale-card-1.jpg);
+}
+
+#card-image-2 {
+  background-image: url(https://cdn11.bigcommerce.com/s-nh4zo/product_images/uploaded_images/wholesale-card-2.jpg);
+}
+
+#card-image-3 {
+  background-image: url(https://cdn11.bigcommerce.com/s-nh4zo/product_images/uploaded_images/wholesale-card-3.jpg);
+}
+
+.wholesale-image-card-info {
+  padding-top: 1.25rem;
+  padding: 1.25rem .9rem 0;
+}
+
+.wholesale-title-container {
+  padding-top: 3rem;
+}
+
+.wholesale-productinformation-button img {
+  height: .4rem;
+  padding-left: .5rem;
+}
+
+.wholesale-productinformation-button.button.button--primary {
+  margin-bottom: 0;
+}
+
+a.wholesale-placeorder-button.button.button--buyNow {
+  margin-bottom: 0;
+}
+
+.wholesale-productinformation-button.button.button--primary:hover {
+  background-color: #525252;
+  border-color: #525252;
+}
+
+.wholesale-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.wholesale-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  width: 100%;
+  text-align: left;
+}
+
+.wholesale-dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.wholesale-dropdown-content a:hover {
+  background-color: #525252;
+}
+
+.wholesale-dropdown:hover .wholesale-dropdown-content {
+  display: block;
+}
+
+.wholesale-sellcard-title {
+  color: white;
+  padding: 1rem 3rem;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+h2.wholesale-section-header {
+    width: 100%;
+    text-align: center;
+    padding-top: 9rem;
+    margin: 0 0 -2rem;
+}
+
+.wholesale-sellcard {
+    text-align: center;
+    width: 28%;
+    box-shadow: 0 18.02px 43.78px rgba(0,0,0,.25);
+    border-radius: 15px;
+}
+
+.wholesale-sellcard-title-container {
+    background-color: black;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.wholesale-sellcard-content img {
+    margin: 0 auto;
+    box-shadow: 0 0 0.5rem 0px rgba(0,0,0,.25);
+}
+
+.wholesale-sellcard-content {
+    padding: 1rem 1rem 0;
+}
+
+a.wholesale-view-button.button.button--buyNow {
+    margin-top: 2rem;
+}
+
+.wholesale-video-container {
+    width: 80%;
+    margin-bottom: 5rem;
+    height: 500px;
+    box-shadow: 0 18.02px 43.78px rgba(0,0,0,.25);
+}
+
+.wholesale-ordercard-detail img {
+    width: 5rem;
+}
+
+.wholesale-ordercard-detail {
+    display: flex;
+    padding: 2rem 0 2rem 2rem;
+}
+
+.wholesale-ordercard-detail-text {
+    align-self: center;
+    margin-left: 2rem;
+}
+
+.wholesale-ordercard-detail-text h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.wholesale-ordercard-detail-text p {
+    margin: 0;
+}
+
+.wholesale-ordercard-details {
+    width: 49%;
+}
+
+.wholesale-ordercard-container {
+    width: 100%;
+    flex-wrap: nowrap;
+    display: flex;
+    background: white;
+    box-shadow: 0 18.02px 43.78px rgba(0,0,0,.25);
+    border-radius: 15px;
+}
+
+.wholesale-ordercard-orderform {
+    align-self: center;
+    width: 49%;
+    text-align: center;
+    padding: 3rem;
+}
+
+.wholesale-ordercard-orderform h2 {
+    font-size: 1.5rem;
+}
+
+.wholesale-ordercard-details > div:nth-child(1) {
+    background-color: #fef1f1;
+    border-top-left-radius: 15px;
+}
+
+.wholesale-ordercard-details > div:nth-child(2) {
+    background-color: #f9bebc;
+}
+
+.wholesale-ordercard-details > div:nth-child(3) {
+    background-color: #f48d8b;
+    border-bottom-left-radius: 15px;
+}
+
+#place-order {
+    padding-top: 4rem;
+}
+
+@media (max-width: 1000px) {
+  .wholesale-container {
+    flex-direction: column;
+  }
+
+  .wholesale-title-content-container {
+    margin: 0 0 35% 0;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wholesale-content-container {
+    margin: 0;
+    padding: 0;
+  }
+
+  .wholesale-contact-details-container {
+    padding: 0;
+  }
+
+  .wholesale-contact-container {
+    width: 85%;
+    margin-top: 3rem;
+  }
+
+  .wholesale-image-card {
+    width: 85%;
+    margin: 0 auto 3rem;
+  }
+
+  .wholesale-title-container {
+    text-align: center;
+  }
+
+  .wholesale-dropdown {
+    margin-top: 1rem;
+  }
+
+  h2.wholesale-section-header {
+    padding: 0 0 1rem 0;
+    margin: 0;
+  }
+
+  .wholesale-sellcard {
+    width: 85%;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+  }
+
+  .wholesale-video-container {
+    height: 250px;
+  }
+
+  .wholesale-ordercard-detail img {
+    width: 4rem;
+    padding-bottom: 1rem;
+  }
+
+  .wholesale-ordercard-detail {
+    padding: 2rem 0;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .wholesale-ordercard-detail-text {
+    margin-left: 0;
+  }
+
+  .wholesale-ordercard-details {
+    width: 100%;
+  }
+
+  .wholesale-ordercard-container {
+    width: 85%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wholesale-ordercard-orderform {
+    width: 85%;
+    padding: 0;
+    margin-bottom: 3rem;
+  }
+
+  .wholesale-ordercard-details>div:nth-child(1) {
+    border-top-right-radius: 15px;
+  }
+
+  .wholesale-ordercard-details>div:nth-child(3) {
+    border-bottom-left-radius: 0;
+  }
+
+  .wholesale-title-buttons {
+    margin-top: 2rem;
+  }
+
+  .wholesale-contact-container {
+    max-width: 360px;
+  }
+}
+
+
+
+// -----------------------------------------------------------------------------
+// Wholesale - Landing Pages
+// -----------------------------------------------------------------------------
+
+
+.wholesale-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.wholesale-title-content-container {
+  margin: 0 auto;
+  padding: 5rem 10rem;
+  flex: 1;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.wholesale-content-container {
+  margin: 0 auto;
+  padding: 5rem 10rem 0;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.wholesale-body {
+    background-image: url(https://cdn11.bigcommerce.com/s-nh4zo/product_images/uploaded_images/wholesale-bg.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-bottom: 8rem;
+}
+
+h2.wholesale-contact-title {
+  color: white;
+  padding: 1rem 3rem;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+.wholesale-contact-title-container {
+  background-color: black;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  text-align: center;
+}
+
+.wholesale-contact-details-container {
+  background-color: white;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  padding: 1rem 1rem;
+}
+
+.wholesale-contact-container {
+  width: 35%;
+  min-width: 343px;
+}
+
+.wholesale-sellcard, .wholesale-contact-container, .wholesale-image-card {
+  box-shadow: 0 18.02px 43.78px rgba(0,0,0,.25);
+  border-radius: 15px;
+}
+
+.wholesale-contact-detail {
+  padding: .5rem 0;
+  width: 75%;
+  margin: 0 auto;
+}
+
+.wholesale-contact-details-container img {
+  padding-right: 1.25rem;
+  height: 3rem;
+  width: 3.5rem;
+}
+
+.wholesale-image-card {
+  width: 28%;
+  background-color: white;
+  text-align: center;
+  padding: 0 0 1rem;
+}
+
+.wholesale-image-card-title-container h2 {
+  color: white;
+  margin: 0;
+  text-shadow: 1px 1px 10px #000;
+  font-size: 1.5rem;
+}
+
+.wholesale-image-card-image {
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  background-size: cover;
+  padding: 5rem 0;
+}
+
+#card-image-1 {
+  background-image: url(https://cdn11.bigcommerce.com/s-nh4zo/product_images/uploaded_images/wholesale-card-1.jpg);
+}
+
+#card-image-2 {
+  background-image: url(https://cdn11.bigcommerce.com/s-nh4zo/product_images/uploaded_images/wholesale-card-2.jpg);
+}
+
+#card-image-3 {
+  background-image: url(https://cdn11.bigcommerce.com/s-nh4zo/product_images/uploaded_images/wholesale-card-3.jpg);
+}
+
+.wholesale-image-card-info {
+  padding-top: 1.25rem;
+  padding: 1.25rem .9rem 0;
+}
+
+.wholesale-title-container {
+  padding-top: 3rem;
+}
+
+.wholesale-productinformation-button img {
+  height: .4rem;
+  padding-left: .5rem;
+}
+
+.wholesale-productinformation-button.button.button--primary {
+  margin-bottom: 0;
+}
+
+a.wholesale-placeorder-button.button.button--buyNow {
+  margin-bottom: 0;
+}
+
+.wholesale-productinformation-button.button.button--primary:hover {
+  background-color: #525252;
+  border-color: #525252;
+}
+
+.wholesale-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.wholesale-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  width: 100%;
+  text-align: left;
+}
+
+.wholesale-dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.wholesale-dropdown-content a:hover {
+  background-color: #525252;
+}
+
+.wholesale-dropdown:hover .wholesale-dropdown-content {
+  display: block;
+}
+
+.wholesale-sellcard-title {
+  color: white;
+  padding: 1rem 3rem;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+h2.wholesale-section-header {
+    width: 100%;
+    text-align: center;
+    padding-top: 9rem;
+    margin: 0 0 -2rem;
+}
+
+.wholesale-sellcard {
+    text-align: center;
+    width: 28%;
+    box-shadow: 0 18.02px 43.78px rgba(0,0,0,.25);
+    border-radius: 15px;
+}
+
+.wholesale-sellcard-title-container {
+    background-color: black;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.wholesale-sellcard-content img {
+    margin: 0 auto;
+    box-shadow: 0 0 0.5rem 0px rgba(0,0,0,.25);
+}
+
+.wholesale-sellcard-content {
+    padding: 1rem 1rem 0;
+}
+
+a.wholesale-view-button.button.button--buyNow {
+    margin-top: 2rem;
+}
+
+.wholesale-video-container {
+    width: 80%;
+    margin-bottom: 5rem;
+    height: 500px;
+    box-shadow: 0 18.02px 43.78px rgba(0,0,0,.25);
+}
+
+.wholesale-ordercard-detail img {
+    width: 5rem;
+}
+
+.wholesale-ordercard-detail {
+    display: flex;
+    padding: 2rem 0 2rem 2rem;
+}
+
+.wholesale-ordercard-detail-text {
+    align-self: center;
+    margin-left: 2rem;
+}
+
+.wholesale-ordercard-detail-text h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.wholesale-ordercard-detail-text p {
+    margin: 0;
+}
+
+.wholesale-ordercard-details {
+    width: 49%;
+}
+
+.wholesale-ordercard-container {
+    width: 100%;
+    flex-wrap: nowrap;
+    display: flex;
+    background: white;
+    box-shadow: 0 18.02px 43.78px rgba(0,0,0,.25);
+    border-radius: 15px;
+}
+
+.wholesale-ordercard-orderform {
+    align-self: center;
+    width: 49%;
+    text-align: center;
+    padding: 3rem;
+}
+
+.wholesale-ordercard-orderform h2 {
+    font-size: 1.5rem;
+}
+
+.wholesale-ordercard-details > div:nth-child(1) {
+    background-color: #fef1f1;
+    border-top-left-radius: 15px;
+}
+
+.wholesale-ordercard-details > div:nth-child(2) {
+    background-color: #f9bebc;
+}
+
+.wholesale-ordercard-details > div:nth-child(3) {
+    background-color: #f48d8b;
+    border-bottom-left-radius: 15px;
+}
+
+#place-order {
+    padding-top: 4rem;
+}
+
+@media (max-width: 1000px) {
+  .wholesale-container {
+    flex-direction: column;
+  }
+
+  .wholesale-title-content-container {
+    margin: 0 0 35% 0;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wholesale-content-container {
+    margin: 0;
+    padding: 0;
+  }
+
+  .wholesale-contact-details-container {
+    padding: 0;
+  }
+
+  .wholesale-contact-container {
+    width: 85%;
+    margin-top: 3rem;
+  }
+
+  .wholesale-image-card {
+    width: 85%;
+    margin: 0 auto 3rem;
+  }
+
+  .wholesale-title-container {
+    text-align: center;
+  }
+
+  .wholesale-dropdown {
+    margin-top: 1rem;
+  }
+
+  h2.wholesale-section-header {
+    padding: 0 0 1rem 0;
+    margin: 0;
+  }
+
+  .wholesale-sellcard {
+    width: 85%;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+  }
+
+  .wholesale-video-container {
+    height: 250px;
+  }
+
+  .wholesale-ordercard-detail img {
+    width: 4rem;
+    padding-bottom: 1rem;
+  }
+
+  .wholesale-ordercard-detail {
+    padding: 2rem 0;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .wholesale-ordercard-detail-text {
+    margin-left: 0;
+  }
+
+  .wholesale-ordercard-details {
+    width: 100%;
+  }
+
+  .wholesale-ordercard-container {
+    width: 85%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wholesale-ordercard-orderform {
+    width: 85%;
+    padding: 0;
+    margin-bottom: 3rem;
+  }
+
+  .wholesale-ordercard-details>div:nth-child(1) {
+    border-top-right-radius: 15px;
+  }
+
+  .wholesale-ordercard-details>div:nth-child(3) {
+    border-bottom-left-radius: 0;
+  }
+
+  .wholesale-title-buttons {
+    margin-top: 2rem;
+  }
+
+  .wholesale-contact-container {
+    max-width: 360px;
+  }
+}

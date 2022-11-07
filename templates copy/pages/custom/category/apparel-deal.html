@@ -1,0 +1,460 @@
+---
+category:
+shop_by_price: true
+products:
+limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{inject "categoryId" category.id}}
+{{#partial "head"}}
+{{#if pagination.category.previous}}
+<link rel="prev" href="{{pagination.category.previous}}">
+{{/if}}
+{{#if pagination.category.next}}
+<link rel="next" href="{{pagination.category.next}}">
+{{/if}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{{/partial}}
+
+{{#partial "page"}}
+<div class="page page--category" id="apparel-deal">
+
+</div>
+{{!--
+<div class="container" id="bulk-order-signInForm">
+  <br><br><br><br><br>
+  <h1 class="page-heading">Please Sign In to Access Bulk Order Form</h1>
+  <p>You must sign in with a qualified wholesale account to use this bullk-order form. Contact your account
+    administrator for more information.</p>
+  {{#if forms.login.error}}
+  {{> components/common/alert/alert-error forms.login.error}}
+  {{/if}}
+  {{#if forms.login.success}}
+  {{> components/common/alert/alert-success forms.login.success}}
+  {{/if}}
+  <div class="login-row account account--fixed">
+    <form class="login-form form" action="{{urls.auth.check_login}}" method="post">
+      {{inject 'useValidEmail' (lang 'forms.validate.common.email_address')}}
+      {{inject 'enterPass' (lang 'forms.validate.common.password')}}
+      <div class="form-field">
+        <label class="form-label" for="login_email">{{lang 'login.field_email'}}</label>
+        <input class="form-input" name="login_email" id="login_email" type="email">
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="login_pass">{{lang 'login.field_password'}}</label>
+        <input class="form-input" id="login_pass" type="password" name="login_pass" autocomplete="off">
+      </div>
+      <div class="form-actions">
+        <input type="submit" class="button button--primary" value="{{lang 'login.submit_value' }}">
+        <a class="forgot-password" href="{{urls.auth.forgot_password}}">{{lang 'login.forgot_password' }}</a>
+      </div>
+    </form>
+    {{#if settings.account_creation_enabled}}
+    <div class="new-customer">
+      <div class="panel">
+        <div class="panel-header">
+          <h2 class="panel-title">{{lang 'login.new_customer.heading' }}</h2>
+        </div>
+        <div class="panel-body">
+          <p class="new-customer-intro">{{lang 'login.new_customer.intro' }}</p>
+          <ul class="new-customer-fact-list">
+            <li class="new-customer-fact">{{lang 'login.new_customer.fact1' }}</li>
+            <li class="new-customer-fact">{{lang 'login.new_customer.fact2' }}</li>
+            <li class="new-customer-fact">{{lang 'login.new_customer.fact3' }}</li>
+            <li class="new-customer-fact">{{lang 'login.new_customer.fact4' }}</li>
+            <li class="new-customer-fact">{{lang 'login.new_customer.fact5' }}</li>
+          </ul>
+          <a href="{{urls.auth.create_account}}"><button class="button button--primary">{{lang
+              'login.new_customer.create_account' }}</button></a>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+  </div>
+</div>
+--}}
+{{/partial}}
+{{> layout/base}}
+
+{{inject 'productIds' (pluck category.products 'id')}}
+{{inject 'productNames' (pluck category.products 'name')}}
+{{inject 'productImages' (pluck category.products 'image')}}
+{{inject 'productPrices' (pluck category.products 'price')}}
+<script>
+  let productIdCache = [191, 234];
+  let accessSwitch = 'Allowed';
+
+  if (accessSwitch === 'Allowed') {
+    let theContainerDiv = document.getElementById('apparel-deal');
+    fetch('https://www.sisuguard.com/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer {{settings.storefront_api.token}}',
+      },
+      body: JSON.stringify({
+        query: `
+    query ExtendedProductsById(
+  $productIds: [Int!]
+  # Use GraphQL Query Variables to inject your product IDs
+) {
+  site {
+    products(entityIds: $productIds, first: 10) {
+      edges {
+        node {
+          entityId
+          id
+          name
+          defaultImage {
+            url(width: 1000)
+          }
+          variants(first: 100) {
+            edges {
+              node {
+                inventory {
+                  isInStock
+                }
+                sku
+                prices {
+                  salePrice {
+                    value
+                  }
+                  basePrice {
+                    value
+                  }
+                }
+                id
+                entityId
+                defaultImage {
+                  url(width: 1000)
+                }
+                productOptions {
+                  edges {
+                    node {
+                      displayName
+                      __typename
+                      ... on MultipleChoiceOption {
+                        values {
+                          edges {
+                            node {
+                              label
+                              __typename
+                              ... on SwatchOptionValue {
+                                label
+                                hexColors
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+      `,
+        variables: {
+          "productIds": productIdCache,
+        },
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        const productData = [];
+        const productDatas = [];
+        const productsObject = result.data.site.products.edges;
+        // console.log(productsObject);
+        productsObject.forEach((id, index) => {
+          // const productData = [];
+          // console.log(id.node.variants.edges);
+          const productName = id.node.name;
+          const productId = id.node.entityId;
+          let productMainImage = id.node.defaultImage.url;
+          // console.log(productMainImage);
+          // console.log(productName);
+          // console.log(productId);
+          id.node.variants.edges.forEach((id, index) => {
+            if (id.node.inventory !== null) {
+              let inStock;
+              id.node.inventory.isInStock !== true ? inStock = false : inStock = true;
+              let stockMessage;
+              if (inStock) {
+                stockMessage = '';
+              } else {
+                stockMessage = 'Out of stock - contact your account manager to backorder.';
+              }
+              // console.log(inStock);
+              // console.log(stockMessage);
+              let innerSalePrice;
+              let innerPrice;
+              let innerColorOption = "Generic";
+              let innerSwatch = "#fff";
+              let innerSizeOption = "One Size";
+              let innerApparelOption;
+              let apparelType;
+              let selectedSection = "false";
+              // console.log(id.node);
+              if (id.node.prices !== null) {
+                if (id.node.prices.salePrice !== null) { innerSalePrice = id.node.prices.salePrice.value };
+              } else {
+                innerPrice = null;
+              };
+              const productsWithApparel = id.node.productOptions.edges.filter(productOption => productOption.node.displayName === "Apparel Option");
+              const productsWithColor = id.node.productOptions.edges.filter(productOption => (productOption.node.displayName === "Color") || (productOption.node.displayName === "SISU Sense Color"));
+              const productsWithSize = id.node.productOptions.edges.filter(productOption => productOption.node.displayName === "Size");
+              if (productsWithColor.length > 0) { innerColorOption = productsWithColor[0].node.values.edges[0].node.label; innerSwatch = productsWithColor[0].node.values.edges[0].node.hexColors[0] };
+              if (productsWithSize.length > 0) { innerSizeOption = productsWithSize[0].node.values.edges[0].node.label };
+              if (productsWithApparel.length > 0) { innerApparelOption = productsWithApparel[0].node.values.edges[0].node.label };
+              if (id.node.defaultImage !== null) { productMainImage = id.node.defaultImage.url };
+              if (productsWithApparel.length > 0) {
+                switch (innerApparelOption) {
+                  case '"I Got Your Back" Hoodie':
+                    apparelType = "hoodie";
+                    selectedSection = "true";
+                    break;
+                  default:
+                    apparelType = "boonie";
+                }
+                if (id.node.entityId === 3433) {
+                  apparelType = "boonieOne";
+                }
+                if (id.node.entityId === 3434) {
+                  apparelType = "boonieTwo";
+                }
+                // console.log(innerApparelOption);
+              }
+              if (productsWithColor.length > 0) {
+                if (innerSizeOption === "Medium") {
+                  selectedSection = "true";
+                }
+              }
+              // console.log(innerColorOption);
+              // console.log(innerSizeOption);
+              // console.log(innerApparelOption);
+              // console.log(id);
+              // console.log(id.node.sku);
+              productData.push({
+                productId: productId,
+                id: id.node.entityId,
+                name: productName,
+                image: productMainImage,
+                price: innerPrice,
+                salePrice: innerSalePrice,
+                color: innerColorOption,
+                swatch: innerSwatch,
+                apparelName: innerApparelOption,
+                selected: 'false',
+                selectedSection: selectedSection,
+                selectedSize: 'false',
+                size: innerSizeOption,
+                apparelType: apparelType,
+                quantity: 0,
+                sku: id.node.sku,
+                optionLabel: 1,
+                inStock: inStock,
+                stockMessage: stockMessage,
+              })
+            } else {
+              let innerSalePrice;
+              let innerPrice;
+              let innerColorOption = "Generic";
+              let innerSizeOption = "One Size";
+              if (id.node.prices !== null) {
+                if (id.node.prices.salePrice !== null) { innerSalePrice = id.node.prices.salePrice.value };
+              } else {
+                innerPrice = null;
+              };
+              const productsWithColor = id.node.productOptions.edges.filter(productOption => productOption.node.displayName === "Color" || "SISU Sense Color");
+              const productsWithSize = id.node.productOptions.edges.filter(productOption => productOption.node.displayName === "Size");
+              if (productsWithColor.length > 0) { innerColorOption = productsWithColor[0].node.values.edges[0].node.label };
+              if (productsWithSize.length > 0) { innerSizeOption = productsWithSize[0].node.values.edges[0].node.label };
+              if (id.node.defaultImage !== null) { productMainImage = id.node.defaultImage.url };
+              // console.log(innerColorOption);
+              // console.log(innerSizeOption);
+              // console.log(id);
+              // console.log(id.node.sku);
+              productData.push({
+                productId: productId,
+                id: id.node.entityId,
+                name: productName,
+                image: productMainImage,
+                price: innerPrice,
+                salePrice: innerSalePrice,
+                color: innerColorOption,
+                size: innerSizeOption,
+                selected: 'false',
+                quantity: 0,
+                sku: id.node.sku,
+                optionLabel: 1,
+                inStock: true,
+                stockMessage: "",
+              })
+            }
+          })
+          // console.log(id.node.variants.edges);
+          // console.log(id.node.variants.edges[index]);
+          // console.log(id.node.variants.edges[index].node);
+          // if (id.node.variants.edges[index].node.inventory.isInStock === 'true') {
+          //   const productName = id.node.name;
+          //   id.node.variants.edges.forEach((id) => {
+          //   console.log(productName + ' - ' + id.node.sku);
+          //   console.log(id.node.prices);
+          // });
+          // }
+          // productDatas.push(productData)
+          // console.log(productDatas);
+          // window.initBulkOrderForm(productDatas[index])
+        });
+        window.initApparelDeal(productData);
+      });
+
+    function waitForElm(selector) {
+      return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+          return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(mutations => {
+          if (document.querySelector(selector)) {
+            resolve(document.querySelector(selector));
+            observer.disconnect();
+          }
+        });
+
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+      });
+    }
+    const handleApparelSelections = () => {
+      waitForElm('.watchClick').then((elm) => {
+        $('.watchClick').on('click', (e) => {
+          e.preventDefault();
+          el = e.target.id;
+          elSolo = e.target;
+          $('.apparel-mg-colors').hide();
+          $('.watchClick').attr('data-selected', 'false');
+          $('.watchClick#' + el).attr('data-selected', 'true');
+          $('.apparel-mg-colors#' + el).show();
+          $('.mgColor').removeClass('grayout');
+        });
+      });
+      waitForElm('.watchApparelClicks').then((elm) => {
+        $('.watchApparelClicks').on('click', (e) => {
+          e.preventDefault();
+          el = e.target.id;
+          $('.apparel-item-selections').hide();
+          $('.watchApparelClicks').attr('data-selected', 'false');
+          $('.watchApparelClicks#' + el).attr('data-selected', 'true');
+          $('.apparel-item-selections.' + el).show();
+          $('.apparelSizes').removeClass('grayout');
+          const hoodieContent = '<div class="featureTags-container"><div class="featureTags-info-container"><span>• Standard fit, order up for a more relaxed fit experience</span></div></div><div class="featureTags-container"><div class="featureTags-info-container"><span>• Air jet yarn for a softer feel and reduced pilling</span></div></div><div class="featureTags-container"><div class="featureTags-info-container"><span>• Double-lined hood with color-matched drawcord</span></div></div><div class="featureTags-container"><div class="featureTags-info-container"><span>• Double-needle stitching at shoulder, armhole, neck, waistband, and cuffs</span></div></div><div class="featureTags-container"><div class="featureTags-info-container"><span>• 50% Cotton / 50% Polyester</span></div></div><div class="featureTags-container"><div class="featureTags-info-container"><span>• Pouch pocket</span></div></div><div class="featureTags-container"><div class="featureTags-info-container"><span>• Fleece knit, although pre-shrunk fabric, some shrinking may occur</span></div></div><div class="featureTags-container"><div class="featureTags-info-container"><span>• Tear away label</span></div></div>';
+          const boonieContent = '<div class="featureTags-container"><div class="featureTags-info-container"><span>• Fabric: 100% Polyester Fabric</span></div></div><div class="featureTags-container"><div class="featureTags-info-container"><span>• Unstructured with a full brim</span></div></div><div class="featureTags-container"><div class="featureTags-info-container"><span>• Adjustable Drawstring</span></div></div><div class="featureTags-container"><div class="featureTags-info-container"><span>• Color: Graphite</span></div></div><div class="featureTags-container"><div class="featureTags-info-container"><span>• Sizes: One size fits most</span></div></div><div class="featureTags-container"><div class="featureTags-info-container"><span>• Crown height: 3.5 inches</span></div></div><div class="featureTags-container"><div class="featureTags-info-container"><span>• Visor length: 3.14 inches</span></div></div><div class="featureTags-container"><div class="featureTags-info-container"><span>• Width of front two panels: 9.5 inches</span></div></div>';
+          const hoodieDescription = 'Gilden heavy blend hooded sweatshirt with front pocket.';
+          const boonieDesription = 'SISU LAX to the MAX - Premium Performance Boonie';
+          const boonieLogoDescription = 'SISU Logo - Premium Performance Boonie';
+          if (el === 'hoodie') {
+            $('#apparel-features').html(hoodieContent);
+            $('#apparel-short-description').text(hoodieDescription);
+            $('#apparelImage').attr('src', 'https://www.sisuguard.com/product_images/uploaded_images/apparel-deal/deal-hoodie.jpg');
+            $('#boonieImageOne').hide();
+            $('#boonieImageTwo').hide();
+            $('#apparelImageAll').hide();
+            $('#apparelImage').show();
+          }
+          if (el === 'boonieOne') {
+            $('#apparel-features').html(boonieContent);
+            $('#apparel-short-description').text(boonieDesription);
+            $('#apparelImage').attr('src', 'https://www.sisuguard.com/product_images/uploaded_images/apparel-deal/deal-boonieOne.jpg');
+            $('#apparelImage').hide();
+            $('#boonieImageTwo').hide();
+            $('#apparelImageAll').hide();
+            $('#boonieImageOne').show();
+          }
+          if (el === 'boonieTwo') {
+            $('#apparel-features').html(boonieContent);
+            $('#apparel-short-description').text(boonieLogoDescription);
+            $('#apparelImage').attr('src', 'https://www.sisuguard.com/product_images/uploaded_images/apparel-deal/deal-boonieTwo.jpg');
+            $('#apparelImage').hide();
+            $('#boonieImageOne').hide();
+            $('#apparelImageAll').hide();
+            $('#boonieImageTwo').show();
+          }
+        });
+      });
+      waitForElm('.apparel-mg-colors').then((elm) => {
+        $('.apparel-mg-colors .form-option').on('click', (e) => {
+          e.preventDefault();
+          const el = e.target.id;
+          let elName = $('#' + el + ' .form-option-variant').attr('title');
+          elName = elName.replace(/\s/g, '');
+          $('#apparelGuardImage').attr('src', 'https://www.sisuguard.com/product_images/uploaded_images/apparel-deal/' + elName + '.jpg');
+        });
+      });
+      waitForElm('.apparelHover').then((elm) => {
+        $('.apparelHover').on('mouseenter', () => {
+          $('#apparelImage').attr('src', 'https://www.sisuguard.com/product_images/uploaded_images/apparel-deal/hoodie-front.jpg');
+        });
+        $('.apparelHover').on('mouseleave', () => {
+          $('#apparelImage').attr('src', 'https://www.sisuguard.com/product_images/uploaded_images/apparel-deal/deal-hoodie.jpg');
+        });
+      });
+    };
+    handleApparelSelections();
+  }
+
+  // const pageContext = JSON.parse({{jsContext}});
+// console.log(pageContext);
+// console.log(pageContext['productPrices'][1].without_tax.formatted);
+// let productData = [];
+// pageContext['productIds'].forEach((id, index) => {
+//   if(pageContext['productPrices'][index] !== undefined) {
+//   productData.push({
+//     id: id,
+//     name: pageContext['productNames'][index],
+//     image: pageContext['productImages'][index].data.replace('{:size}', '100x100'),
+//     price: pageContext['productPrices'][index].without_tax.formatted,
+//     quantity: 0
+//     })
+//   }
+// });
+</script>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Dec 1, 2021 0:0:0").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("apparelTimer").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("apparelTimer").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>

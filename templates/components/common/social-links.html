@@ -1,0 +1,22 @@
+{{#if social_media}}
+    <ul class="socialLinks socialLinks--alt">
+        {{#each social_media}}
+            <li class="socialLinks-item">
+                <a class="icon icon--{{display_name}}" href="{{url}}" target="_blank" rel="noopener">
+                    <svg><use xlink:href="#icon-{{display_name}}" /></svg>
+                </a>
+            </li>
+        {{/each}}
+            <li class="socialLinks-item">
+                <a class="icon icon--tiktok" href="https://vm.tiktok.com/ZMeVGLogc/" target="_blank" rel="noopener">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<path d="M464.7,112.5c-53.7,0-97.5-43.7-97.5-97.5c0-8.3-6.7-15-15-15h-80.3c-8.3,0-15,6.7-15,15v329.4c0,31.6-25.7,57.3-57.3,57.3
+	s-57.3-25.7-57.3-57.3c0-31.6,25.7-57.3,57.3-57.3c8.3,0,15-6.7,15-15v-80.3c0-8.3-6.7-15-15-15C107.2,176.7,32,251.9,32,344.4
+	S107.2,512,199.6,512s167.6-75.2,167.6-167.6V198.6c29.9,15.9,63.1,24.2,97.5,24.2c8.3,0,15-6.7,15-15v-80.3
+	C479.7,119.2,473,112.5,464.7,112.5z"/>
+</svg>
+                </a>
+            </li>
+    </ul>
+{{/if}}

@@ -1,0 +1,153 @@
+.productView {
+    max-width: 1230px;
+    margin: 0 auto;
+}
+
+// .productView-warranty {
+//     margin-top: -2rem;
+// }
+
+// .slick-slider {
+//     margin-top: 60px;
+// }
+  
+// .slick-prev, .slick-next {
+//     left: 50% !important;
+//     transform: translate(-50%, 0);
+// }
+// .slick-next {
+//     top: unset;
+//     bottom: -40px;
+// }
+// .slick-prev {
+//     top: -40px;
+// }
+
+.accordion-backer {
+    color: white;
+    background-color: #333;
+}
+
+.accordion-backer.prod--191 {
+    background-color: #D2334A;
+}
+
+.accordion-backer.prod--192 {
+    background-color: #814C9E;
+}
+
+.accordion-backer.prod--232 {
+    background-color: #005b80;
+}
+
+.accordion-backer.prod--200 {
+    background-color: #61BC4E;
+}
+
+h5.video-title {
+    color: white;
+}
+
+p.video-description {
+    color: white;
+}
+
+// .accordion-backer.prod--127 {
+//     color: #A0ED05;
+// }
+
+.accordion-backer h2,
+.accordion-backer h3,
+.accordion-backer h4,
+.accordion-backer a {
+    color: white;
+}
+
+.yotpo-icon-btn-big.transparent-color-btn.yotpo-logo-btn.yotpo-icon.yotpo-icon-yotpo-logo.yotpo-logo-icon-new.yotpo-icon.yotpo-icon-yotpo-logo,
+.yotpo-powered {
+    display: none;
+}
+
+.yotpo.yotpo-main-widget {
+    max-width: 1920px;
+    padding: 0 1rem;
+}
+
+.priceDiv {
+    display: inline-block;
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 0 0 0.35714rem;
+    line-height: normal;
+    vertical-align: middle;
+}
+
+.productView-title.main-heading {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.productView-price {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 0;
+    // margin: 0 0 0.35714rem;
+    // font-size: 2rem;
+}
+
+.non-sale-price--withoutTax {
+    padding-right: .25rem;
+}
+
+.featureTags-container {
+    display: table;
+    margin: .25rem;
+    margin-left: -10px;
+    // border: solid 2px lightgray;
+    border-radius: 6px;
+}
+
+.featureTags-info-container {
+    // border-left: solid 2px lightgray;
+    padding: .5rem;
+    line-height: normal;
+    display: table-cell;
+    vertical-align: middle;
+    width: 88%;
+}
+
+.featureTags-check-container {
+    padding: .5rem;
+    display: table-cell;
+    vertical-align: middle;
+    width: 49px;
+    text-align: right;
+}
+
+.featureTags-check-container > img {
+    width: 25px;
+    padding: .2rem;
+}
+
+[data-product-attribute="set-rectangle"].with-after-element:after {
+    content: "*If you wear braces, size up to medium.";
+    color: #d2334a;
+    line-height: 50px;
+    width: 100%;
+    font-size: 16px;
+}
+
+[data-product-attribute="swatch"].with-after-element:after {
+    content: "Warning: White is illegal in many lacrosse and field hockey programs.";
+    color: #d2334a;
+    line-height: 50px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.accordion-navigation.toggleLink > div {
+    display: flex;
+    flex: 0 1 100%;
+    justify-content: space-between;
+    align-items: center;
+}

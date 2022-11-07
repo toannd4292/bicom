@@ -1,0 +1,55 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{inject 'productId' product.id}}
+
+{{#partial "page"}}
+    <div class="container">
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+        {{#each product.shipping_messages}}
+            {{> components/common/alert/alert-info message}}
+        {{/each}}
+    </div>
+
+    <div itemscope itemtype="http://schema.org/Product">
+        <div class="container">
+            {{> components/products/product-view schema=true  }}
+            {{{region name="product_below_content"}}}
+        </div>
+
+        {{> components/products/tabs schema=true }}
+
+        {{#if product.related_products}}
+            {{#unless theme_settings.related_products_tab}}
+                <div id="tab-related">
+                    <div class="grid-bg">
+                        <div class="container">
+                            <h3 class="main-heading uppercase center"><strong>{{lang 'products.related_products'}}</strong></h3>
+                            {{#if settings.data_tag_enabled}}
+                                {{> components/products/related products=product.related_products columns=6 list="Related Products"}}
+                            {{else}}
+                                {{> components/products/related products=product.related_products columns=6}}
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            {{/unless}}
+        {{/if}}
+        
+            <!-- <div class="yotpo yotpo-main-widget" data-product-id="191"
+                data-price="{{ product.price.without_tax.value }}" data-currency="{{ currency_selector.active_currency_code }}"
+                data-name="{{ product.title }}" data-url="{{ product.url }}" data-image-url="{{getImage product.main_image}}"
+                data-description="{{ product.description }}">
+            </div> -->
+    </div>
+{{/partial}}
+{{> layout/base}}

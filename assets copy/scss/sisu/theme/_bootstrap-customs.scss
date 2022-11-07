@@ -1,0 +1,39 @@
+.breadcrumb {
+  display: inline-block;
+  flex-wrap: unset;
+  padding: unset;
+  margin-bottom: 0;
+  background: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: $heading-marginTop;
+  font-weight: 700;
+  margin-bottom: $header-bottom-margin;
+}
+
+.button:hover {
+  text-decoration: none;
+}
+
+.modal {
+  left: 50%;
+}
+
+.navUser-action {
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.navUser-action:hover {
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 1261px) {
+  .modal.modal--large {
+    width: 1280px;
+  }
+}

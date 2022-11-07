@@ -1,0 +1,96 @@
+{{#partial "page"}}
+<div class="quiz-header">
+  <h1 class='section-title addGrit'>Mouthguard Quiz</h1>
+</div>
+<div class="container">
+  <div class="quiz-container">
+    <form id="quiz-form">
+      <div class="form-field" id="quiz-height">
+        <label class="form-label form-label--alternate form-label--inlineSmall" id="rectangle-group-label">
+          How Tall Are You?
+          <!-- <small class="is-required">
+        Required
+      </small> -->
+        </label>
+        <div class="form-option-wrapper">
+          <input class="form-radio quiz-target" type="radio" id="height-under-5" name="attribute[height]" value="h-1"
+            required="" data-state="false">
+          <label class="form-option" for="height-under-5">
+            <span class="form-option-variant">Under 5'</span>
+          </label>
+        </div>
+        <div class="form-option-wrapper">
+          <input class="form-radio quiz-target" type="radio" id="height-5-6" name="attribute[height]" value="h-2" required=""
+            data-state="false">
+          <label class="form-option" for="height-5-6">
+            <span class="form-option-variant">5' - 6'</span>
+          </label>
+        </div>
+        <div class="form-option-wrapper">
+          <input class="form-radio quiz-target" type="radio" id="height-over-6" name="attribute[height]" value="h-3" required=""
+            data-state="false">
+          <label class="form-option" for="height-over-6">
+            <span class="form-option-variant">Over 6'</span>
+          </label>
+        </div>
+      </div>
+      <div class="form-field" id="sports-form">
+        <label class="form-label form-label--alternate form-label--inlineSmall">
+          What Sports Do You Play?
+          </label>
+          <select class="select-2-sports quiz-target" multiple="multiple">
+            <option value="">View Options</option>
+            <option value="go">Baseball</option>
+            <option value="go">Basketball</option>
+            <option value="max">BMX</option>
+            <option value="max">Boxing</option>
+            <option value="go">Crossfit</option>
+            <option value="aero">Cycling</option>
+            <option value="max">Field Hockey</option>
+            <option value="max">Football</option>
+            <option value="max">Hockey</option>
+            <option value="max">Lacrosse</option>
+            <option value="max">Mixed Martial Arts</option>
+            <option value="max">Motocross</option>
+            <option value="aero">Roller Derby</option>
+            <option value="max">Rugby</option>
+            <option value="aero">Snowboarding</option>
+            <option value="go">Soccer</option>
+            <option value="aero">Softball</option>
+            <option value="aero">Volleyball</option>
+            <option value="max">Wrestling</option>
+            <option value="max">Other - High Impact Sport</option>
+            <option value="aero">Other - Team Sport</option>
+            </select>
+      </div>
+      <div class="form-field" id="quiz-braces">
+        <label class="form-label form-label--alternate form-label--inlineSmall" id="rectangle-group-label">
+          Do You Wear Braces?
+          <!-- <small class="is-required">
+        Required
+      </small> -->
+        </label>
+        <div class="form-option-wrapper">
+          <input class="form-radio quiz-target" type="radio" id="braces-yes" name="attribute[braces]" value="b-1" required=""
+            data-state="false">
+          <label class="form-option" for="braces-yes">
+            <span class="form-option-variant">Yes</span>
+          </label>
+        </div>
+        <div class="form-option-wrapper">
+          <input class="form-radio quiz-target" type="radio" id="braces-no" name="attribute[braces]" value="b-2" required=""
+            data-state="false">
+          <label class="form-option" for="braces-no">
+            <span class="form-option-variant">No</span>
+          </label>
+        </div>
+      </div>
+    </form>
+    <div class="quiz-result-container">
+<h2 id="pre-quiz" class="">Fill out the form to see our recommendation!</h2>
+    </div>
+  </div>
+</div>
+{{/partial}}
+
+{{> layout/base}}

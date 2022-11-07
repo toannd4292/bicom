@@ -1,0 +1,238 @@
+{{#if banners.bottom}}
+    {{#if settings.data_tag_enabled}}
+        <div class="banners" data-banner-location="bottom">
+            {{#each (limit banners.bottom_metadata 1)}}
+                <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                    <div data-event-type="promotion-click">
+                        {{{this.content}}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{else}}
+        <div class="banners" data-banner-location="bottom">
+            <div class="banner">
+                {{{limit banners.bottom 1}}}
+            </div>
+        </div>
+    {{/if}}
+{{/if}}
+
+<!-- {{#if settings.show_newsletter_box}}
+    <div class="footer-newsletter">
+        {{> components/common/subscription-form}}
+    </div>
+{{/if}} -->
+
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        <section class="footer-info 4a616d6573">
+            <div id="loginGroup" style="display:none;">{{customer.customer_group_name}}</div>
+            <article class="footer-info-col footer-info-dropdown footer-info-col--small"
+                data-section-type="footer-categories">
+                <h5 class="footer-info-heading">
+                    {{#if theme_settings.footer_col1_heading}}
+                    {{theme_settings.footer_col1_heading}}
+                    {{/if}}
+                    <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xlink:href="#icon-downselector" />
+                        </svg>
+                    </i>
+                </h5>
+                <ul class="footer-info-list">
+                    <!-- {{#each categories}}
+                        <li>
+                            <a href="{{url}}">{{name}}</a>
+                        </li>
+                    {{/each}} -->
+                    {{#if theme_settings.footer_col1_heading}}
+                    {{#if theme_settings.footer_col1_1}}
+                    <li>
+                        <a href="{{theme_settings.footer_col1_1_url}}">{{theme_settings.footer_col1_1}}</a>
+                    </li>
+                    {{/if}}
+                    {{#if theme_settings.footer_col1_2}}
+                    <li>
+                        <a href="{{theme_settings.footer_col1_2_url}}">{{theme_settings.footer_col1_2}}</a>
+                    </li>
+                    {{/if}}
+                    {{#if theme_settings.footer_col1_3}}
+                    <li>
+                        <a href="{{theme_settings.footer_col1_3_url}}">{{theme_settings.footer_col1_3}}</a>
+                    </li>
+                    {{/if}}
+                    {{#if theme_settings.footer_col1_4}}
+                    <li>
+                        <a href="{{theme_settings.footer_col1_4_url}}">{{theme_settings.footer_col1_4}}</a>
+                    </li>
+                    {{/if}}
+                    {{#if theme_settings.footer_col1_5}}
+                    <li>
+                        <a href="{{theme_settings.footer_col1_5_url}}">{{theme_settings.footer_col1_5}}</a>
+                    </li>
+                    {{/if}}
+                    {{#if theme_settings.footer_col1_6}}
+                    <li>
+                        <a href="{{theme_settings.footer_col1_6_url}}">{{theme_settings.footer_col1_6}}</a>
+                    </li>
+                    <li>
+                        <a href="https://blog.sisuguard.com">News + Blog</a>
+                    </li>
+                    {{/if}}
+                    {{/if}}
+                    <!-- {{#if settings.gift_certificates_enabled}}
+                    <li>
+                        <a href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
+                    </li>
+                    {{/if}} -->
+                </ul>
+            </article>
+
+            <article class="footer-info-col footer-info-dropdown footer-info-col--small"
+                data-section-type="footer-webPages">
+                <h5 class="footer-info-heading">
+                    {{#if theme_settings.footer_col2_heading}}
+                    {{theme_settings.footer_col2_heading}}
+                    {{/if}}
+                    <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xlink:href="#icon-downselector" />
+                        </svg>
+                    </i>
+                </h5>
+                <ul class="footer-info-list">
+                    {{#if theme_settings.footer_col2_heading}}
+                    {{#if theme_settings.footer_col2_1}}
+                    <li>
+                        <a href="{{theme_settings.footer_col2_1_url}}">{{theme_settings.footer_col2_1}}</a>
+                    </li>
+                    {{/if}}
+                    {{#if theme_settings.footer_col2_2}}
+                    <li>
+                        <a href="{{theme_settings.footer_col2_2_url}}">{{theme_settings.footer_col2_2}}</a>
+                    </li>
+                    {{/if}}
+                    {{#if theme_settings.footer_col2_3}}
+                    <li>
+                        <a href="{{theme_settings.footer_col2_3_url}}">{{theme_settings.footer_col2_3}}</a>
+                    </li>
+                    {{/if}}
+                    {{#if theme_settings.footer_col2_4}}
+                    <li>
+                        <a href="{{theme_settings.footer_col2_4_url}}">{{theme_settings.footer_col2_4}}</a>
+                    </li>
+                    {{/if}}
+                    {{#if theme_settings.footer_col2_5}}
+                    <li>
+                        <a href="{{theme_settings.footer_col2_5_url}}">{{theme_settings.footer_col2_5}}</a>
+                    </li>
+                    {{/if}}
+                    {{#if theme_settings.footer_col2_6}}
+                    <li>
+                        <a href="{{theme_settings.footer_col2_6_url}}">{{theme_settings.footer_col2_6}}</a>
+                    </li>
+                    {{/if}}
+                    {{/if}}
+                    <!-- {{#each pages}}
+                    <li>
+                        <a href="{{url}}">{{name}}</a>
+                    </li>
+                    {{/each}} -->
+                    <!-- <li>
+                        <a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a>
+                    </li> -->
+                </ul>
+            </article>
+
+            {{#and theme_settings.shop_by_brand_show_footer shop_by_brand.length}}
+            <article class="footer-info-col footer-info-dropdown footer-info-col--small"
+                data-section-type="footer-brands">
+                <h5 class="footer-info-heading">
+                    {{lang 'footer.brands'}}
+                    <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xlink:href="#icon-downselector" />
+                        </svg>
+                    </i>
+                </h5>
+                <ul class="footer-info-list">
+                    {{#each shop_by_brand}}
+                    <li>
+                        <a href="{{url}}">{{name}}</a>
+                    </li>
+                    {{/each}}
+                    <li><a href="{{urls.brands}}">{{lang 'common.view_all'}}</a></li>
+                </ul>
+            </article>
+            {{/and}}
+
+            {{#if theme_settings.social_icons_footer}}
+            <article class="footer-info-col footer-mobile-limited footer-info-col--small"
+                data-section-type="footer-webPages">
+                <h5 class="footer-info-heading">{{lang 'social.connect'}}</h5>
+                {{> components/common/social-links}}
+            </article>
+            {{/if}}
+
+       
+            <article class="footer-info-col footer-mobile-limited footer-info-col--small" data-section-type="storeInfo">
+                <!-- <h5 class="footer-info-heading footer-store-name">{{settings.store_name}}</h5> -->
+                <div class="footer-info-heading footer-store-name"><a href="/"><img src="{{ cdn '../img/sisu/theme/global/sisu-mouthguards-logo.svg' }}" alt="SISU Mouthguards Logo" /></a></div>
+                <!-- <address>Akervall Technologies Inc.</br>{{nl2br settings.address}}</address> -->
+                <p>(see'-soo) <em>noun</em> - bravery, tenacity, <strong>grit</strong></p>
+               
+                <div class="footer-info-phone">
+                    <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xlink:href="#icon-phone" />
+                        </svg>
+                    </i>
+                    <a href="tel:800-444-0570">800-444-0570</a>
+                    <!--<a href="tel:{{settings.phone_number}}">{{settings.phone_number}}</a>-->
+                </div>
+             
+            </article>
+      
+        </section>
+        {{#if theme_settings.geotrust_ssl_common_name}}
+        <div class="footer-geotrust-ssl-seal">
+            {{> components/common/geotrust-ssl-seal}}
+        </div>
+        {{/if}}
+
+        <div class="footer-copyright">
+            {{> components/common/payment-icons}}
+            {{#if theme_settings.show_copyright_footer}}
+            <p class="powered-by text-center">&copy; {{moment format="YYYY"}} <a href="http://www.akervalltechnologies.com/">AKERVALL TECHNOLOGIES INC</a> | ALL RIGHTS RESERVED | <a href="/privacy/">PRIVACY POLICY</a> | <a href="/patents/">PATENTS</a></p>
+            {{/if}}
+        </div>
+    </div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $(".navUser-wrap .navPages-item--currency .navPages-action").click(function(){
+      if ($(this).hasClass('ativec')) {
+        $(this).removeClass('ativec');
+        $(".navUser-wrap #navPages-currency").slideUp();  
+      } else {
+        $(this).addClass('ativec');  
+        $(".navUser-wrap #navPages-currency").slideDown();  
+      }
+    
+  });
+});
+</script>
+
+<style>
+div#navPages-currency {
+    right: 0px !important;
+}    
+div#navPages-currency a {
+    width: 100%;
+}    
+</style>
+<!-- Start of HubSpot Embed Code -->
+ <script type="text/javascript" id="hs-script-loader" async defer src="//js-na1.hs-scripts.com/212277.js"></script>
+<!-- End of HubSpot Embed Code -->

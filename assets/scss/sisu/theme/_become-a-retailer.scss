@@ -1,0 +1,27 @@
+// -----------------------------------------------------------------------------
+// Become a Retailer
+// -----------------------------------------------------------------------------
+
+@media (max-width: 800px) {
+  body > div.body > main > div > div > div.fitting_video.fitting_video_become_a_retailer > div > div.five.columns {
+      width: 100%;
+      text-align: center;
+  }
+  body > div.body > main > div > div > div.fitting_video.fitting_video_become_a_retailer > div > div.seven.columns {
+      width: 100%;
+  }
+}
+
+#main-content > div.container.fullPager > main > div > div.fitting_video.fitting_video_become_a_retailer > div > div.seven.columns > div > div > iframe {
+  height: 100%;
+  width: 100%;
+}
+
+#main-content > div.container.fullPager > main > div > div.fitting_video.fitting_video_become_a_retailer > div > div.seven.columns > div > div {
+  height: 100%;
+  padding-top: 0!important;
+}
+
+#main-content > div.container.fullPager > main > div > div.fitting_video.fitting_video_become_a_retailer > div > div.seven.columns > div {
+  height: 100%;
+}

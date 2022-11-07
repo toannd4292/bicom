@@ -1,0 +1,64 @@
+{{#with product}}
+<article class="card quiz-result-card {{#if alternate}}card--alternate{{/if}} {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}has-sale-price{{/or}}" {{#if settings.data_tag_enabled}} data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"  {{/if}}>
+  <figure class="card-figure">
+      {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
+              <div class="sale-flag-side">
+                  <span class="sale-text">Sale</span>
+              </div>
+      {{/or}}
+
+      {{#is stock_level 0}}
+          {{#unless out_of_stock_message}}
+              <div class="stock-badge">
+                  <span class="stock-message">Out of stock</span>
+              </div>
+          {{/unless}}
+      {{/is}}
+
+      <a href="{{url}}" 
+         class="card-figure__link"
+         aria-label="{{name}},{{> components/products/product-aria-label}}"
+         {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
+      >
+          <div class="card-img-container">
+              <img class="card-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage main_image (cdn ../theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+          </div>
+      </a>
+          <figcaption class="card-figcaption">
+              <div class="card-figcaption-body">
+                  <div class="card-figcaption--action-buttons">
+                          <!-- {{#if settings.data_tag_enabled}}
+                              <a class="button button--secondary button--small card-figcaption-button quickview" data-event-type="product-click" data-product-id="{{id}}">{{lang 'products.quick_view'}}</a>
+                          {{else}}
+                              <a class="button button--secondary button--small card-figcaption-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</a>
+                          {{/if}} -->
+                              <a href="{{url}}" data-event-type="product-click" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                          {{#if pre_order}}
+                              <a href="{{pre_order_add_to_cart_url}}" data-event-type="product-click" class="button button--small card-figcaption-button">{{lang 'products.pre_order'}}</a>
+                          {{/if}}
+                          {{#if add_to_cart_url }}
+                              <a href="{{add_to_cart_url}}" data-event-type="product-click" class="button button--small card-figcaption-button">{{lang 'products.add_to_cart'}}</a>
+                          {{/if}}
+                          {{#if out_of_stock_message }}
+                              <a href="{{url}}" data-event-type="product-click" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                          {{/if}}
+                  </div>
+              </div>
+          </figcaption>
+  </figure>
+  <div class="card-body">
+      <div>
+          <h4 class="card-title">
+              <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{title}}</a>
+          </h4>
+          <div class="card-text" data-test-info-type="price">
+                  {{> components/products/price price=price}}
+          </div>
+      </div>
+
+      <div class="card-details">          
+          {{> components/products/bulk-discount-rates}}
+      </div>
+  </div>
+</article>
+{{/with}}

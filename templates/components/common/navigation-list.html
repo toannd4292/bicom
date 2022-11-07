@@ -1,0 +1,65 @@
+{{#if children}}
+<a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
+   href="{{url}}"
+   data-collapsible="navPages-{{id}}"
+>
+    {{name}}
+    <i class="icon navPages-action-moreIcon" aria-hidden="true">
+        <svg><use xlink:href="#icon-chevron-down" /></svg>
+    </i>
+</a>
+<div class="column-menu navPage-subMenu navPages-{{id}} navPages-{{name}}" aria-hidden="true" tabindex="-1">
+    <ul class="navPage-subMenu-list">
+        {{#each children}}
+        <!-- AH EDIT -->
+            <li class="navPage-subMenu-item{{#if ../name '!==' 'Shop'}} navPage-straight{{/if}}">
+                <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-right" /></svg></i>
+                <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
+                {{#if children}}
+                    <i class="icon navPages-action-moreIcon navPages-action-closed" aria-hidden="true"><svg><use xlink:href="#icon-plus" /></svg></i>
+                    <i class="icon navPages-action-moreIcon navPages-action-open" aria-hidden="true"><svg><use xlink:href="#icon-minus" /></svg></i>
+                {{/if}}
+                <ul>
+                    {{#if children}}
+                        {{#each children}}
+                            <li class="navPage-childList-item">
+                                <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
+                            </li>
+                        {{/each}}
+                    {{/if}}                    
+                </ul>
+            </li>
+
+        {{/each}}
+    </ul>
+</div>
+{{else}}
+<a class="navPages-action{{#if is_active}} activePage{{/if}}"
+   href="{{url}}"
+   aria-label="{{name}}"
+>
+    {{name}}
+</a>
+{{/if}}
+<style>
+@media only screen and (min-width: 875px) {
+    .column-menu>ul>li.navPage-childList-item {
+        display: none;
+    }    
+    .navPage-straight  ul { padding: 0px;}
+    .navPages-SHOP>ul:first-child {
+        display: none !important;
+    }
+    .navPages-SHOP>ul:last-child {
+        display: flex;
+        flex: 1 1 0 !important;
+        justify-content: center;
+    }
+    .navPages-SHOP>ul:last-child li.navPage-straight {
+        flex: 0 0 237px;    margin: 0px !important;
+    }
+    .navPages-SHOP>ul:last-child li.navPage-straight ul li{
+        padding: 3px 0;
+    }
+}
+</style>

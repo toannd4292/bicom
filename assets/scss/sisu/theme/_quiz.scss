@@ -1,0 +1,83 @@
+.select2-container .select2-search--inline textarea.select2-search__field {
+  min-height: unset;
+  max-width: 90%;
+}
+
+#sports-form {
+  max-width: 350px;
+}
+
+.quiz-header {
+  padding-top: 3rem;
+}
+
+h1.section-title.addGrit.highlightedText {
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  margin: 0 auto;
+}
+
+.quiz-container {
+  display: flex;
+  padding-top: 5rem;
+  justify-content: center;
+}
+
+#quiz-form {
+  .form-field .form-option {
+    padding: 10px 15px;
+    line-height: normal;
+    border-radius: 4px;
+  }
+
+  .form-label {
+    font-size: 25px;
+    text-transform: uppercase;
+  }
+
+  flex: 0 1 25%;
+}
+
+.quiz-result-container {
+  display: flex;
+  flex: 0 1 50%;
+  flex-direction: row;
+}
+
+#quiz-result-container {
+  // overflow-x: scroll;
+  /* overflow-y: hidden; */
+}
+
+#quiz-result-contents-container {
+  flex: 0 1 100%;
+  display: flex;
+  max-width: 100%;
+}
+
+#pre-quiz {
+  align-self: center;
+  text-align: center;
+  width: 100%;
+}
+
+.quiz-result-card {
+  flex: 0 1 25%;
+  margin: 0 1rem;
+}
+
+.card.is-recommended::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 40%;
+  max-width: 150px;
+  max-height: 150px;
+  background: url('../img/sisu/theme/global/recommended-label.png') no-repeat top right;
+  background-size: contain;
+  z-index: 9;
+  pointer-events: none;
+}

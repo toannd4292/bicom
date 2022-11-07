@@ -1,0 +1,433 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{inject "categoryId" category.id}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+<!-- <div class="container">
+  <h1>Hello from SISU.</h1>
+  <br/>
+  <p>We are currently working on making our bulk-ordering experience better for our wholesale customers. We apologize for any inconvenience, and encourage you to reach out to your account administrator to place an order. Thank you!</p>
+  <p>Griffin Sibo - <a href="mailto:griffin@sisuguard.com">griffin@sisuguard.com</a></p>
+  <p>Ben Bloomfield - <a href="mailto:ben@sisuguard.com">ben@sisuguard.com</a></p>
+</div> -->
+
+<div class="page page--category" id="bulk-order-container" style="display: none;">
+
+    
+    <div class="main full grid-bg">
+      <div><br><br><br><br><br></div>
+      <h2 style="text-align:center;">BULK ORDER FORM</h2>
+      <div id="wholesale-25" style="display:none; text-align:center;">
+        <div>Your pricing tier: <strong>Wholesale Retailer</strong></div>
+        <div>Minimum mouthguard qty: <strong>25</strong></div>
+      </div>
+      <div id="wholesale-500" style="display:none; text-align:center;">
+        <div>Your pricing tier: <strong>Wholesale Distributor</strong></div>
+        <div>Minimum mouthguard qty: <strong>500</strong></div>
+      </div>
+      <div id="wholesale-1500" style="display:none; text-align:center;">
+        <div>Your pricing tier: <strong>Wholesale Distributor</strong></div>
+        <div>Minimum mouthguard qty: <strong>1500</strong></div>
+      </div>
+      <div id="wholesale-team" style="display:none; text-align:center;">
+        <div>Your pricing tier: <strong>Team Sales</strong></div>
+        <div>Minimum mouthguard qty: <strong>25</strong></div>
+      </div>
+      <div id="sova-wholesale-25" style="display:none; text-align:center;">
+        <div>Your pricing tier: <strong>Wholesale Retailer - SOVA</strong></div>
+        <div>Minimum mouthguard qty: <strong>25</strong></div>
+      </div>
+      <div id="sova-wholesale-500" style="display:none; text-align:center;">
+        <div>Your pricing tier: <strong>Wholesale Distributor - SOVA</strong></div>
+        <div>Minimum mouthguard qty: <strong>500</strong></div>
+      </div>
+      <div id="sova-wholesale-1500" style="display:none; text-align:center;">
+        <div>Your pricing tier: <strong>Wholesale Distributor - SOVA</strong></div>
+        <div>Minimum mouthguard qty: <strong>1500</strong></div>
+      </div>
+        <div class="container">
+            <main class="page-content" id="product-listing-container">
+              <div><br><br><br><br><br></div>
+              <div id="bulk-order-flex">
+                <div id="bulk-order-form"></div>
+              </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="bulk-order-signInForm">
+  <br><br><br><br><br>
+  <h1 class="page-heading">Please Sign In to Access Bulk Order Form</h1>
+  <p>You must sign in with a qualified wholesale account to use this bullk-order form. Contact your account administrator for more information.</p>
+  {{#if forms.login.error}}
+      {{> components/common/alert/alert-error forms.login.error}}
+  {{/if}}
+  {{#if forms.login.success}}
+      {{> components/common/alert/alert-success forms.login.success}}
+  {{/if}}
+  <div class="login-row account account--fixed">
+      <form class="login-form form" action="{{urls.auth.check_login}}" method="post">
+          {{inject 'useValidEmail' (lang 'forms.validate.common.email_address')}}
+          {{inject 'enterPass' (lang 'forms.validate.common.password')}}
+          <div class="form-field">
+              <label class="form-label" for="login_email">{{lang 'login.field_email'}}</label>
+              <input class="form-input" name="login_email" id="login_email" type="email">
+          </div>
+          <div class="form-field">
+              <label class="form-label" for="login_pass">{{lang 'login.field_password'}}</label>
+              <input class="form-input" id="login_pass" type="password" name="login_pass" autocomplete="off">
+          </div>
+          <div class="form-actions">
+              <input type="submit" class="button button--primary" value="{{lang 'login.submit_value' }}">
+              <a class="forgot-password" href="{{urls.auth.forgot_password}}">{{lang 'login.forgot_password' }}</a>
+          </div>
+      </form>
+      {{#if settings.account_creation_enabled}}
+          <div class="new-customer">
+              <div class="panel">
+                  <div class="panel-header">
+                      <h2 class="panel-title">{{lang 'login.new_customer.heading' }}</h2>
+                  </div>
+                  <div class="panel-body">
+                      <p class="new-customer-intro">{{lang 'login.new_customer.intro' }}</p>
+                      <ul class="new-customer-fact-list">
+                          <li class="new-customer-fact">{{lang 'login.new_customer.fact1' }}</li>
+                          <li class="new-customer-fact">{{lang 'login.new_customer.fact2' }}</li>
+                          <li class="new-customer-fact">{{lang 'login.new_customer.fact3' }}</li>
+                          <li class="new-customer-fact">{{lang 'login.new_customer.fact4' }}</li>
+                          <li class="new-customer-fact">{{lang 'login.new_customer.fact5' }}</li>
+                      </ul>
+                      <a href="{{urls.auth.create_account}}"><button class="button button--primary">{{lang 'login.new_customer.create_account' }}</button></a>
+                  </div>
+              </div>
+          </div>
+      {{/if}}
+  </div>
+  </div>
+
+{{/partial}}
+{{> layout/base}}
+
+{{inject 'productIds' (pluck category.products 'id')}}
+{{inject 'productNames' (pluck category.products 'name')}}
+{{inject 'productImages' (pluck category.products 'image')}}
+{{inject 'productPrices' (pluck category.products 'price')}}
+<script>
+let productIdCache = [];
+let accessSwitch = 'Allowed';
+const custGroup = '{{ customer.customer_group_name }}';
+const loginRetailer = document.getElementById('wholesale-25');
+const loginDist500 = document.getElementById('wholesale-500');
+const loginDist1500 = document.getElementById('wholesale-1500');
+const loginTeam = document.getElementById('wholesale-team');
+const loginRetailerSova = document.getElementById('sova-wholesale-25');
+const loginDist500Sova = document.getElementById('sova-wholesale-500');
+const loginDist1500Sova = document.getElementById('sova-wholesale-1500');
+// console.log(custGroup);
+switch("{{ customer.customer_group_name }}") {
+  // case 'wholesale-general-retail':
+  //   productIdCache = [232, 191, 192, 200, 189, 209, 198];
+  //   break;
+  // case 'wholesale-sports-inc':
+  //   // console.log('sports-inc');
+  //   productIdCache = [232, 191, 192, 200, 189, 209, 198];
+  //   break;
+  // case 'wholesale-pias':
+  //   // console.log('sports-inc');
+  //   productIdCache = [232, 191, 192, 200, 189, 209, 198];
+  //   break;
+  // case 'wholesale-team-sales':
+  //   // console.log('team-sales');
+  //   productIdCache = [232, 191, 192, 200, 189, 209, 198];
+  //   break;
+  case 'Wholesale-TeamSale-25':
+  productIdCache = [232, 191, 192, 200, 189, 212, 198];
+  loginTeam.style.display = 'block';
+    break;
+  case 'Wholesale-Distributor-500':
+  productIdCache = [232, 191, 192, 200, 189, 212, 198, 240, 235, 236, 237, 238];
+  loginDist500.style.display = 'block';
+    break;
+  case 'Wholesale-Retail-25':
+  productIdCache = [232, 191, 192, 200, 189, 212, 198, 240, 235, 236, 237, 238];
+  loginRetailer.style.display = 'block';
+    break;
+  case 'Wholesale-Distributor-1500':
+  productIdCache = [232, 191, 192, 200, 189, 212, 198, 240, 235, 236, 237, 238];
+  loginDist1500.style.display = 'block';
+    break;
+  case 'SOVA-Wholesale-Retail-25':
+  productIdCache = [232, 191, 192, 200, 189, 212, 198, 240, 235, 236, 237, 238];
+  loginRetailerSova.style.display = 'block';
+    break;
+  case 'SOVA-Wholesale-Distributor-500':
+  productIdCache = [232, 191, 192, 200, 189, 212, 198, 240, 235, 236, 237, 238];
+  loginDist500Sova.style.display = 'block';
+    break;
+  case 'SOVA-Wholesale-Distributor-1500':
+  productIdCache = [232, 191, 192, 200, 189, 212, 198, 240, 235, 236, 237, 238];
+  loginDist1500Sova.style.display = 'block';
+    break;
+  default:
+    accessSwitch = 'denied';
+    productIdCache = [];
+}
+
+if (accessSwitch === 'Allowed') {
+let theDiv = document.getElementById('bulk-order-signInForm');
+let theContainerDiv = document.getElementById('bulk-order-container');
+theDiv.style.display = 'none';
+theContainerDiv.style.display = 'block';
+fetch('https://www.sisuguard.com/graphql', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+'Authorization': 'Bearer {{settings.storefront_api.token}}',
+  },
+  body: JSON.stringify({
+    query: `
+    query ExtendedProductsById(
+  $productIds: [Int!]
+  # Use GraphQL Query Variables to inject your product IDs
+) {
+  site {
+    products(entityIds: $productIds, first: 15) {
+      edges {
+        node {
+          entityId
+          id
+          name
+          defaultImage {
+            url(width: 1000)
+          }
+          variants(first: 100) {
+            edges {
+              node {
+                inventory {
+                  isInStock
+                }
+                sku
+                prices {
+                  salePrice {
+                    value
+                  }
+                  basePrice {
+                    value
+                  }
+                }
+                id
+                entityId
+                defaultImage {
+                  url(width: 1000)
+                }
+                productOptions {
+                  edges {
+                    node {
+                      displayName
+                      __typename
+                      ... on MultipleChoiceOption {
+                        values {
+                          edges {
+                            node {
+                              label
+                              __typename
+                              ... on SwatchOptionValue {
+                                label
+                                hexColors
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+      `,
+    variables: {
+      "productIds": productIdCache,
+    },
+  }),
+})
+  .then((res) => res.json())
+  .then((result) => {
+    const productData = [];
+    const productDatas = [];
+    const productsObject = result.data.site.products.edges;
+    // console.log(productsObject);
+    // console.log(result);
+    productsObject.forEach((id, index) => {
+      // const productData = [];
+      // console.log(id.node.variants.edges);
+      const productName = id.node.name;
+      const productId = id.node.entityId;
+      let productMainImage = id.node.defaultImage.url;
+      // console.log(productMainImage);
+      // console.log(productName);
+      // console.log(productId);
+      id.node.variants.edges.forEach((id, index) => {
+        if (id.node.inventory !== null) {
+          let inStock;
+          id.node.inventory.isInStock !== true ? inStock = false : inStock = true;
+          let stockMessage;
+          if(inStock) {
+            stockMessage = '';
+          } else {
+            stockMessage = 'Out of stock - contact your account manager to backorder.';
+          }
+          // console.log(inStock);
+          // console.log(stockMessage);
+          let innerSalePrice;
+          let innerPrice;
+          let innerColorOption = "Generic";
+          let innerSizeOption = "One Size";
+          // console.log(id.node);
+          if (id.node.prices !== null) {
+          if (id.node.prices.salePrice !== null) { innerSalePrice = id.node.prices.salePrice.value };
+          } else {
+            innerPrice = null;
+          };
+          const productsWithColor = id.node.productOptions.edges.filter(productOption => (productOption.node.displayName === "Color") || (productOption.node.displayName === "SISU Sense Color"));
+          const productsWithSize = id.node.productOptions.edges.filter(productOption => productOption.node.displayName === "Size");
+          if (productsWithColor.length > 0) { innerColorOption = productsWithColor[0].node.values.edges[0].node.label};
+          if (productsWithSize.length > 0) { innerSizeOption = productsWithSize[0].node.values.edges[0].node.label};
+          if (id.node.defaultImage !== null) { productMainImage = id.node.defaultImage.url };
+        // console.log(innerColorOption);
+        // console.log(innerSizeOption);
+          // console.log(id);
+          // console.log(id.node.sku);
+          productData.push({
+            productId: productId,
+            id: id.node.entityId,
+            name: productName,
+            image: productMainImage,
+            price: innerPrice,
+            salePrice: innerSalePrice,
+            color: innerColorOption,
+            size: innerSizeOption,
+            quantity: 0,
+            sku: id.node.sku,
+            optionLabel: 1,
+            inStock: inStock,
+            stockMessage: stockMessage,
+          })
+        } else {
+          let innerSalePrice;
+          let innerPrice;
+          let innerColorOption = "Generic";
+          let innerSizeOption = "One Size";
+          if (id.node.prices !== null) {
+          if (id.node.prices.salePrice !== null) { innerSalePrice = id.node.prices.salePrice.value };
+          } else {
+            innerPrice = null;
+          };
+          const productsWithColor = id.node.productOptions.edges.filter(productOption => productOption.node.displayName === "Color" || "SISU Sense Color");
+          const productsWithSize = id.node.productOptions.edges.filter(productOption => productOption.node.displayName === "Size");
+          if (productsWithColor.length > 0) { innerColorOption = productsWithColor[0].node.values.edges[0].node.label};
+          if (productsWithSize.length > 0) { innerSizeOption = productsWithSize[0].node.values.edges[0].node.label};
+          if (id.node.defaultImage !== null) { productMainImage = id.node.defaultImage.url };
+          if (productId === 235 || productId === 236 || productId === 240) { innerColorOption = "Snow White"};
+        // console.log(innerColorOption);
+        // console.log(innerSizeOption);
+          // console.log(id);
+          // console.log(id.node.sku);
+          productData.push({
+            productId: productId,
+            id: id.node.entityId,
+            name: productName,
+            image: productMainImage,
+            price: innerPrice,
+            salePrice: innerSalePrice,
+            color: innerColorOption,
+            size: innerSizeOption,
+            quantity: 0,
+            sku: id.node.sku,
+            optionLabel: 1,
+            inStock: true,
+            stockMessage: "",
+          })
+        }
+      })
+      // console.log(id.node.variants.edges);
+      // console.log(id.node.variants.edges[index]);
+      // console.log(id.node.variants.edges[index].node);
+      // if (id.node.variants.edges[index].node.inventory.isInStock === 'true') {
+      //   const productName = id.node.name;
+      //   id.node.variants.edges.forEach((id) => {
+      //   console.log(productName + ' - ' + id.node.sku);
+      //   console.log(id.node.prices);
+      // });
+      // }
+    // productDatas.push(productData)
+    // console.log(productDatas);
+    // window.initBulkOrderForm(productDatas[index])
+  });
+  // console.log(productData);
+  window.initBulkOrderForm(productData);
+  });
+}
+function waitForElm(selector) {
+  return new Promise(resolve => {
+    if (document.querySelector(selector)) {
+      return resolve(document.querySelector(selector));
+    }
+
+    const observer = new MutationObserver(mutations => {
+      if (document.querySelector(selector)) {
+        resolve(document.querySelector(selector));
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  });
+}
+
+if (custGroup === 'SOVA-Wholesale-Distributor-500' || custGroup === 'SOVA-Wholesale-Distributor-1500' || custGroup === 'SOVA-Wholesale-Retail-25') {
+  waitForElm('#flexor').then((elm) => {
+  // console.log('working');
+  const flexor = document.getElementById('flexor');
+  flexor.style.display = "flex";
+  flexor.style.flexDirection = "column-reverse";
+  });
+};
+  // const pageContext = JSON.parse({{jsContext}});
+// console.log(pageContext);
+// console.log(pageContext['productPrices'][1].without_tax.formatted);
+// let productData = [];
+// pageContext['productIds'].forEach((id, index) => {
+//   if(pageContext['productPrices'][index] !== undefined) {
+//   productData.push({
+//     id: id,
+//     name: pageContext['productNames'][index],
+//     image: pageContext['productImages'][index].data.replace('{:size}', '100x100'),
+//     price: pageContext['productPrices'][index].without_tax.formatted,
+//     quantity: 0
+//     })
+//   }
+// });
+</script>
