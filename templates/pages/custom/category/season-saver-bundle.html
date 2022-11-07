@@ -34,7 +34,7 @@ limit: {{theme_settings.categorypage_products_per_page}}
 
   if (accessSwitch === 'Allowed') {
     let theContainerDiv = document.getElementById('season-saver');
-    fetch('https://sisuguardeu.mybigcommerce.com/graphql', {
+    fetch('https://saibourx.mybigcommerce.com/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -114,24 +114,31 @@ limit: {{theme_settings.categorypage_products_per_page}}
     })
       .then((res) => res.json())
       .then((result) => {
-          console.log('result',result)
         const productData = [];
         const productDatas = [];
         const productsObject = result.data.site.products.edges;
+        // console.log(productsObject);
         productsObject.forEach((id, index) => {
+          // const productData = [];
+          // console.log(id.node.variants.edges);
           const productName = id.node.name;
           const productId = id.node.entityId;
           let productMainImage = id.node.defaultImage.url;
+          // console.log(productMainImage);
+          // console.log(productName);
+          // console.log(productId);
           id.node.variants.edges.forEach((id, index) => {
             if (id.node.inventory !== null) {
               let inStock;
               id.node.inventory.isInStock !== true ? inStock = false : inStock = true;
               let stockMessage;
               if (inStock) {
-                stockMessage = 'Stock stock';
+                stockMessage = '';
               } else {
                 stockMessage = 'Out of stock - contact your account manager to backorder.';
               }
+              // console.log(inStock);
+              // console.log(stockMessage);
               let innerSalePrice;
               let innerPrice;
               let innerColorOption = "Generic";
@@ -139,7 +146,8 @@ limit: {{theme_settings.categorypage_products_per_page}}
               let innerSizeOption = "One Size";
               let innerApparelOption;
               let apparelType;
-              let selectedSection = "true";
+              let selectedSection = "false";
+              // console.log(id.node);
               if (id.node.prices !== null) {
                 if (id.node.prices.salePrice !== null) { innerSalePrice = id.node.prices.salePrice.value };
               } else {
@@ -147,6 +155,7 @@ limit: {{theme_settings.categorypage_products_per_page}}
               };
               const productsWithColor = id.node.productOptions.edges.filter(productOption => (productOption.node.displayName === "Mouthguard Color") || (productOption.node.displayName === "Color"));
               const productsWithSize = id.node.productOptions.edges.filter(productOption => productOption.node.displayName === "Mouthguard");
+              // console.log(productsWithColor);
               if (productsWithColor.length > 0) { innerColorOption = productsWithColor[0].node.values.edges[0].node.label; innerSwatch = productsWithColor[0].node.values.edges[0].node.hexColors[0] };
               if (productsWithSize.length > 0) { innerSizeOption = productsWithSize[0].node.values.edges[0].node.label };
               if (innerSizeOption === '3D - $34.99') {innerSizeOption = '3D'};
@@ -161,7 +170,11 @@ limit: {{theme_settings.categorypage_products_per_page}}
                   selectedSection = "true";
                 }
               }
-              selectedSection = "true";
+              // console.log(innerColorOption);
+              // console.log(innerSizeOption);
+              // console.log(innerApparelOption);
+              // console.log(id);
+              // console.log(id.node.sku);
               productData.push({
                 productId: productId,
                 id: id.node.entityId,
@@ -220,7 +233,21 @@ limit: {{theme_settings.categorypage_products_per_page}}
               })
             }
           })
+          // console.log(id.node.variants.edges);
+          // console.log(id.node.variants.edges[index]);
+          // console.log(id.node.variants.edges[index].node);
+          // if (id.node.variants.edges[index].node.inventory.isInStock === 'true') {
+          //   const productName = id.node.name;
+          //   id.node.variants.edges.forEach((id) => {
+          //   console.log(productName + ' - ' + id.node.sku);
+          //   console.log(id.node.prices);
+          // });
+          // }
+          // productDatas.push(productData)
+          // console.log(productDatas);
+          // window.initBulkOrderForm(productDatas[index])
         });
+        // console.log(productData);
         window.initSuperDeal(productData);
       });
 
@@ -244,19 +271,19 @@ limit: {{theme_settings.categorypage_products_per_page}}
       });
     }
     const handleApparelSelections = () => {
-    //   waitForElm('.watchClick').then((elm) => {
-    //      $('.watchClick').on('click', (e) => {
-    //       e.preventDefault();
-    //       el = e.target.id;
-    //       elSolo = e.target;
-    //       // $('.apparel-mg-colors').hide();
-    //       $('.watchClick').attr('data-selected', 'false');
-    //       $('.watchClick#' + el).attr('data-selected', 'true');
-    //       $('mg-colors#' + el).show();
-    //       $('.mgColor').removeClass('grayout');
-    //       $('.bulk-add-cart').addClass('grayout');
-    //      });
-    //   });
+      // waitForElm('.watchClick').then((elm) => {
+      //   $('.watchClick').on('click', (e) => {
+      //     e.preventDefault();
+      //     el = e.target.id;
+      //     elSolo = e.target;
+      //     // $('.apparel-mg-colors').hide();
+      //     $('.watchClick').attr('data-selected', 'false');
+      //     $('.watchClick#' + el).attr('data-selected', 'true');
+      //     $('mg-colors#' + el).show();
+      //     $('.mgColor').removeClass('grayout');
+      //     $('.bulk-add-cart').addClass('grayout');
+      //   });
+      // });
       waitForElm('.watchApparelClicks').then((elm) => {
         $('.watchApparelClicks').on('click', (e) => {
           e.preventDefault();
